@@ -1,0 +1,56 @@
+postgresql:
+  image: sameersbn/postgresql:9.4
+  environment:
+    - DB_USER=john
+    - DB_PASS=mydbpassword
+    - DB_NAME=dbgitlab,dbredmine
+  volumes:
+    - /DockerVolumes/DevStack/postgresql:/var/lib/postgresql
+redis:
+  image: sameersbn/redis:latest
+  volumes:
+    - /DockerVolumes/DevStack/redis:/var/lib/redis
+redmine:
+  image: sameersbn/redmine:latest
+  ports:
+    - "0.0.0.0:10083:80"
+  environment:
+    - REDMINE_PORT=10083
+    - SMTP_ENABLED=true
+    - SMTP_USER=gluchet@gmail.com
+    - SMTP_PASS=vw89ycy1
+    - DB_NAME=dbredmine
+    - DB_USER=john
+    - DB_PASS=mydbpassword
+  volumes:
+    - /DockerVolumes/DevStack/redmine:/home/redmine/data
+  links:
+    - postgresql:postgresql
+gitlab:
+  image: sameersbn/gitlab:7.10.0
+  ports:
+    - "0.0.0.0:8000:80"
+    - "0.0.0.0:10022:22"
+  environment:
+    - GITLAB_BACKUPS=daily
+    - GITLAB_HOST=192.168.59.103:8000
+    - VIRTUAL_HOST=192.168.59.103:8000
+    - MAX_UPLOAD_SIZE=512m
+    - GITLAB_HTTPS=false
+    - GITLAB_SSH_PORT=10022
+    - GITLAB_PORT=80
+    - SMTP_ENABLED=true
+    - SMTP_USER=gluchet@gmail.com
+    - SMTP_PASS=vw89ycy1
+    - DB_USER=john
+    - DB_PASS=mydbpassword
+    - DB_NAME=dbgitlab
+  volumes:
+    - /DockerVolumes/DevStack/gitlab/data:/home/git/data
+  links:
+   - redis:redisio
+   - postgresql:postgresql
+mattermost:
+  image: mattermost/platform
+  ports:
+    - "0.0.0.0:8065:80"
