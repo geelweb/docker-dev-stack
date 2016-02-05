@@ -11,3 +11,7 @@ default user: admin / admin
 # Mattermost
 
 http://192.168.59.103:8065/
+
+# TODO
+
+Configure gitlab-ci
