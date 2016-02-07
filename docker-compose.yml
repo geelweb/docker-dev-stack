@@ -27,7 +27,7 @@ redmine:
   links:
     - postgresql:postgresql
 gitlab:
-  image: sameersbn/gitlab:7.10.0
+  image: sameersbn/gitlab:latest
   ports:
     - "0.0.0.0:8000:80"
     - "0.0.0.0:10022:22"
@@ -39,6 +39,7 @@ gitlab:
     - GITLAB_HTTPS=false
     - GITLAB_SSH_PORT=10022
     - GITLAB_PORT=8000
+    - GITLAB_SECRETS_DB_KEY_BASE=v43bnWKmJhPMvKMPHVx7TCjN93qKxchWPHfb9Jp43Hd3JTCstrhxgctrgPxt7Njt
     - SMTP_ENABLED=true
     - SMTP_USER=gluchet@gmail.com
     - SMTP_PASS=vw89ycy1
