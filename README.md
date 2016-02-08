@@ -25,6 +25,21 @@ docker image: sameersbn/gitlab
 Brose http://192.168.59.103:8000/
 default user: root / 5iveL!fe
 
+### Add a runner for GitLab CI
+
+    docker run -d --name gitlab-runner --restart always \
+      -v /var/run/docker.sock:/var/run/docker.sock \
+      -v /srv/gitlab-runner/config:/etc/gitlab-runner \
+      gitlab/gitlab-runner:latest
+
+In your GitLab project Go to Settings > Runners to get the data to register the runner
+
+Register the runner
+
+    docker exec -it gitlab-runner gitlab-runner register
+
+More informations here https://gitlab.com/gitlab-org/gitlab-ci-multi-runner/blob/master/docs/install/docker.md
+
 ## Redmine
 
 http://www.redmine.org/
