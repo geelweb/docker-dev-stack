@@ -56,8 +56,8 @@ mattermost:
   ports:
     - "0.0.0.0:8065:8065"
   environment:
-    - POSTGRES_USER=john
-    - POSTGRES_PASSWORD=mydbpassword
-    - POSTGRES_DB=dbmattermost
+    - DB_USER=john
+    - DB_PASS=mydbpassword
+    - DB_NAME=dbmattermost
   links:
-    - postgresql:postgresql
+    - postgresql:db
