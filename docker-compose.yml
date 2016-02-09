@@ -17,8 +17,8 @@ redmine:
   environment:
     - REDMINE_PORT=10083
     - SMTP_ENABLED=true
-    - SMTP_USER=gluchet@gmail.com
-    - SMTP_PASS=vw89ycy1
+    - SMTP_USER=example@gmail.com
+    - SMTP_PASS=secret
     - DB_NAME=dbredmine
     - DB_USER=john
     - DB_PASS=mydbpassword
